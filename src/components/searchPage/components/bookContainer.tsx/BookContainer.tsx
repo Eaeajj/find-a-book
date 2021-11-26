@@ -52,7 +52,7 @@ const BookContainer = () => {
 
       {isLoading && <h1>Загрука...</h1>}
       {isError && <h1>Ошибка</h1>}
-      {!!books?.length && !(books.length % 30) && !isLoading && (
+      {!isError && !!books?.length && !(books.length % 30) && !isLoading && (
         <button className={styles.button} onClick={(e) => handleClick(e)}>
           load more
         </button>
