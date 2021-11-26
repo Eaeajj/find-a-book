@@ -10,8 +10,8 @@ interface CardProps {
 
 const BookCard: FC<CardProps> = ({ authors, categories, image, title }) => {
   let formatAuthors = !!authors ? authors.join(", ") : "";
-  if (formatAuthors.length > 52)
-    formatAuthors = formatAuthors.slice(0, 52) + "...";
+  if (formatAuthors.length > 30)
+    formatAuthors = formatAuthors.slice(0, 30) + "...";
   else formatAuthors = formatAuthors.slice(0, -1);
 
   return (
@@ -23,8 +23,8 @@ const BookCard: FC<CardProps> = ({ authors, categories, image, title }) => {
         <p className={styles.category}>{categories ? categories[0] : ""}</p>
         <h4 className={styles.title}>
           {title
-            ? title.length > 77
-              ? title.slice(0, 77) + "..."
+            ? title.length > 54
+              ? title.slice(0, 54) + "..."
               : title
             : ""}
         </h4>

@@ -22,17 +22,21 @@ export const booksSlice = createSlice({
     booksFetching(state) {
       state.isLoading = true;
       state.books = [];
+      state.isError = "";
     },
     moreBooksFetching(state) {
       state.isLoading = true;
+      state.isError = "";
     },
     booksFetchingSuccess(state, action: PayloadAction<BooksResponse>) {
       state.isLoading = false;
       state.books = action.payload.items;
+      state.isError = "";
       state.foundedResults = action.payload.totalItems;
     },
     moreBookFetchigSuccess(state, action: PayloadAction<Item[]>) {
       state.isLoading = false;
+      state.isError = "";
       state.books = state.books.concat(action.payload);
     },
     booksFetchingError(state, action: PayloadAction<string>) {

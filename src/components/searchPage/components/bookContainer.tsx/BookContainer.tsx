@@ -27,7 +27,9 @@ const BookContainer = () => {
   return (
     <div className={styles.wrapper}>
       <p className={styles.foundedResults}>
-        {!isLoading && foundedResults ? `найдено книг ${foundedResults}` : ""}
+        {!isLoading && !isError && foundedResults
+          ? `найдено книг ${foundedResults}`
+          : ""}
       </p>
       <div className={styles.container}>
         {!!books?.length &&

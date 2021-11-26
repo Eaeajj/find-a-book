@@ -28,17 +28,20 @@
   color: grey;
   width: auto;
   height: 20px;
+  overflow-wrap: break-word;
 }
 
 .title {
   width: auto;
   height: 38px;
+  overflow-wrap: break-word;
 }
 
 .authors {
   margin: 0;
   padding: 0;
   height: 38px;
+  overflow-wrap: break-word;
 }
 
 .author {
