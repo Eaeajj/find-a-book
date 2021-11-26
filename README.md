@@ -4,7 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This <b>react-redux app</b> is used to search for books. It works with google book api.\
 Documentation: https://developers.google.com/books/docs/v1/using
 
-Api requests with a certain book returns bad images. I have not realize how to solve it, just left so
+I've deployed this app on heroku by using docker (not docker-compose) & heroku cli\
+Look at it! https://find-a-book-test.herokuapp.com/
+
+Api requests with a certain book sometimes returns bad images. I have not realize how to solve it, just left so
 
 ## Before start
 
@@ -15,8 +18,8 @@ Documetation: https://developers.google.com/books/docs/v1/using
 
 First of all, fulfill the point above. And then you can start this app with docker by commands
 
-docker-compose build\
-docker-compose up
+docker build -t bookapp .\
+docker run bookapp
 
 Then find the application at the given address on 3000 port
 
