@@ -53,7 +53,10 @@ const Header = () => {
           <select
             name="category"
             className={styles.select}
-            onChange={(e) => dispatch(changeCategory(e.target.value))}
+            onChange={(e) => {
+              dispatch(changeCategory(e.target.value));
+              dispatch(fetchBooks(input || "typescript", sort, e.target.value));
+            }}
           >
             <option value={Category.all}>{Category.all}</option>
             <option value={Category.art}>{Category.art}</option>
@@ -67,7 +70,12 @@ const Header = () => {
           <select
             name="sort"
             className={styles.select}
-            onChange={(e) => dispatch(changeSort(e.target.value))}
+            onChange={(e) => {
+              dispatch(changeSort(e.target.value));
+              dispatch(
+                fetchBooks(input || "typescript", e.target.value, category)
+              );
+            }}
           >
             <option value={Sort.relevance}>{Sort.relevance}</option>
             <option value={Sort.newest}>{Sort.newest}</option>
