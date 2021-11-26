@@ -1,0 +1,16 @@
+.descriptionContainer {
+  width: 50vw;
+  margin: 30px;
+  margin-top: 0;
+}
+
+.descriptionContainer h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 736px) {
+  .descriptionContainer {
+    margin: 0;
+    width: 70vw;
+  }
+}

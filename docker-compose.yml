@@ -1,0 +1,10 @@
+version: "3.2"
+
+services:
+  main:
+    container_name: main
+    build: .
+    ports:
+      - 3000:3000
+    command: npm run start
+    restart: always

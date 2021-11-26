@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.imgContainer {
+  height: 500px;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+
+.descriptionContainer {
+  width: 50vw;
+  margin: 30px;
+  margin-top: 0;
+}
+
+.title {
+  height: 22px;
+  background-color: #ddd;
+  margin-bottom: 18px;
+}
+
+.authors {
+  height: 38px;
+  background-color: #ddd;
+  margin-bottom: 18px;
+}
+
+.categories {
+  height: 38px;
+  background-color: #ddd;
+  margin-bottom: 18px;
+}
+
+.description {
+  height: 120px;
+  background-color: #ddd;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 736px) {
+  .descriptionContainer {
+    margin: 0;
+    width: 70vw;
+  }
+  .imgContainer {
+    width: 300px;
+    height: 450px;
+  }
+}
