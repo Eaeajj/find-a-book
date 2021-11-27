@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { BooksResponse, Item } from "../models/books";
+import { BooksResponse, Item } from "../../models/books";
 
 interface BooksState {
   books: Item[];

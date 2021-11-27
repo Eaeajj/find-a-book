@@ -2,27 +2,29 @@ import React from "react";
 import styles from "./Header.module.css";
 
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
-import { fetchBooks } from "../../../../store/ActionCreator";
+import { fetchBooks } from "../../../../store/books/BooksActionCreator";
+import { changeInput } from "../../../../store/param/ParamSlice";
+
 import {
-  changeCategory,
-  changeInput,
   changeSort,
-} from "../../../../store/ParamSlice";
+  changeCategory,
+} from "../../../../store/param/ParamActionCreator";
+import Select from "../select/Select";
 
-enum Category {
-  all = "all",
-  art = "art",
-  biography = "biography",
-  computers = "computers",
-  history = "history",
-  medical = "medical",
-  poetry = "poetry",
-}
+const categories = {
+  all: "all",
+  art: "art",
+  biography: "biography",
+  computers: "computers",
+  history: "history",
+  medical: "medical",
+  poetry: "poetry",
+};
 
-enum Sort {
-  relevance = "relevance",
-  newest = "newest",
-}
+const sortings = {
+  relevance: "relevance",
+  newest: "newest",
+};
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -32,9 +34,9 @@ const Header = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     dispatch(fetchBooks(input, sort, category));
   };
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -50,36 +52,23 @@ const Header = () => {
         </form>
         <div className={styles.selects}>
           <p>Category</p>
-          <select
+          <Select
             name="category"
-            className={styles.select}
-            onChange={(e) => {
-              dispatch(changeCategory(e.target.value));
-              dispatch(fetchBooks(input || "typescript", sort, e.target.value));
-            }}
-          >
-            <option value={Category.all}>{Category.all}</option>
-            <option value={Category.art}>{Category.art}</option>
-            <option value={Category.biography}>{Category.biography}</option>
-            <option value={Category.computers}>{Category.computers}</option>
-            <option value={Category.history}>{Category.history}</option>
-            <option value={Category.medical}>{Category.medical}</option>
-            <option value={Category.poetry}>{Category.poetry}</option>
-          </select>
+            options={categories}
+            value={category}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              dispatch(changeCategory(e.target.value))
+            }
+          />
           <p>Sorting by</p>
-          <select
+          <Select
             name="sort"
-            className={styles.select}
-            onChange={(e) => {
+            value={sort}
+            options={sortings}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               dispatch(changeSort(e.target.value));
-              dispatch(
-                fetchBooks(input || "typescript", e.target.value, category)
-              );
             }}
-          >
-            <option value={Sort.relevance}>{Sort.relevance}</option>
-            <option value={Sort.newest}>{Sort.newest}</option>
-          </select>
+          />
         </div>
       </div>
     </header>

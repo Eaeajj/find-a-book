@@ -1,10 +1,13 @@
 import BookCard from "../bookCard/BookCard";
 import styles from "./BookContainer.module.css";
 import { useAppSelector, useAppDispatch } from "../../../../hooks/redux";
-import { fetchBooks, fetchMoreBooks } from "../../../../store/ActionCreator";
+import {
+  fetchBooks,
+  fetchMoreBooks,
+} from "../../../../store/books/BooksActionCreator";
 import { useEffect } from "react";
-import { SkeletonArray } from "../bookCard/BookCardSkeleton";
 import { Link } from "react-router-dom";
+import BookCardsSkeleton from "../bookCard/BookCardsSkeleton";
 
 const BookContainer = () => {
   const dispatch = useAppDispatch();
@@ -31,26 +34,25 @@ const BookContainer = () => {
           ? `найдено книг ${foundedResults}`
           : ""}
       </p>
-      <div className={styles.container}>
+      <ul className={styles.container}>
         {!!books?.length &&
-          books.map((book, index) => (
-            <Link to={`/${book?.id}`} className={styles.link}>
-              <BookCard
-                key={book.id}
-                authors={book?.volumeInfo?.authors}
-                categories={book?.volumeInfo?.categories}
-                image={book?.volumeInfo?.imageLinks?.smallThumbnail}
-                title={book?.volumeInfo?.title}
-              />
-            </Link>
-          ))}
+          books.map((book, index) => {
+            return (
+              <Link to={`/${book?.id}`} className={styles.link} key={index}>
+                <BookCard
+                  authors={book?.volumeInfo?.authors}
+                  categories={book?.volumeInfo?.categories}
+                  image={book?.volumeInfo?.imageLinks?.smallThumbnail}
+                  title={book?.volumeInfo?.title}
+                />
+              </Link>
+            );
+          })}
         {!books && !isLoading && !isError && <p>Книг не найдено</p>}
-        {isLoading && (
-          <div className={styles.skeletonContainer}>{SkeletonArray}</div>
-        )}
-      </div>
+        {isLoading && <BookCardsSkeleton />}
+      </ul>
 
-      {isLoading && <h1>Загрука...</h1>}
+      {isLoading && <h1>Загрузка...</h1>}
       {isError && <h1>Ошибка</h1>}
       {!isError && !!books?.length && !(books.length % 30) && !isLoading && (
         <button className={styles.button} onClick={(e) => handleClick(e)}>

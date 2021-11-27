@@ -1,7 +1,6 @@
 import { booksSlice } from "./BooksSlice";
-import { AppDispatch, store } from "./store";
-import { API_KEY } from "../utils/constants";
-import { bookSlice } from "./BookSlice";
+import { AppDispatch, store } from "../store";
+import { API_KEY, defaultBookReq } from "../../utils/constants";
 
 const limit = 30;
 
@@ -13,7 +12,6 @@ export const fetchBooks =
       const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes/?q=${book}&subject=${subject}&orderBy=${orderBy}&key=${API_KEY}&maxResults=${limit}`
       ).then((res) => res.json());
-      console.log(response);
       if (response?.error)
         dispatch(booksSlice.actions.booksFetchingError(response.error.message));
       else dispatch(booksSlice.actions.booksFetchingSuccess(response));
@@ -28,7 +26,7 @@ export const fetchMoreBooks =
     const { booksReducer } = store.getState();
     const { books } = booksReducer;
     try {
-      if (!book) book = "magic";
+      if (!book) book = defaultBookReq;
       dispatch(booksSlice.actions.moreBooksFetching());
       const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes/?q=${book}&startIndex=${books.length}&subject=${subject}&orderBy=${orderBy}&key=${API_KEY}&maxResults=${limit}`
@@ -38,15 +36,3 @@ export const fetchMoreBooks =
       dispatch(booksSlice.actions.booksFetchingError(error?.message));
     }
   };
-
-export const fetchBook = (id: string) => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(bookSlice.actions.bookFetching());
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes/${id}`
-    ).then((res) => res.json());
-    dispatch(bookSlice.actions.bookFetchingSuccess(response));
-  } catch (error: any) {
-    dispatch(bookSlice.actions.bookFetchingError(error?.message));
-  }
-};

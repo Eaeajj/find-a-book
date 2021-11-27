@@ -74,19 +74,6 @@
   align-items: center;
 }
 
-.select {
-  margin-left: 5px;
-  margin-right: 5px;
-  height: 30px;
-  width: 150px;
-  background-color: #444;
-  color: #ddd;
-  font-size: 1em;
-  border: none;
-  border-radius: 2px;
-  outline: none;
-}
-
 @media (max-width: 736px) {
   .container {
     width: 100%;
@@ -94,9 +81,6 @@
   }
   .selects {
     font-size: 0.8em;
-  }
-  .select {
-    width: auto;
   }
   .form {
     width: 90vw;

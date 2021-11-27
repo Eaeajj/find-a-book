@@ -1,3 +1,14 @@
+.skeletonContainer {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 430px;
+  padding: 0;
+}
+
 .card {
   height: 370px;
   width: 270px;

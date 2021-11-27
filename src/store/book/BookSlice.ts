@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { BookResponse } from "../models/book";
+import { BookResponse } from "../../models/book";
 
 interface BookState {
   book: BookResponse;
@@ -19,9 +19,11 @@ export const bookSlice = createSlice({
   reducers: {
     bookFetching(state) {
       state.isLoading = true;
+      state.isError = "";
     },
     bookFetchingSuccess(state, action: PayloadAction<BookResponse>) {
       state.isLoading = false;
+      state.isError = "";
       state.book = action.payload;
     },
     bookFetchingError(state, action: PayloadAction<string>) {

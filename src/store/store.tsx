@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import booksReducer from "./BooksSlice";
-import paramReducer from "./ParamSlice";
-import bookReducer from "./BookSlice";
+import booksReducer from "./books/BooksSlice";
+import paramReducer from "./param/ParamSlice";
+import bookReducer from "./book/BookSlice";
 
 const rootReducer = combineReducers({
   bookReducer,
@@ -15,8 +15,8 @@ export const setupStore = () => {
   });
 };
 
+export const store = setupStore();
+
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore["dispatch"];
-
-export const store = setupStore();

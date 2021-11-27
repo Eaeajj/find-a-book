@@ -23,8 +23,8 @@ const BookCard: FC<CardProps> = ({ authors, categories, image, title }) => {
         <p className={styles.category}>{categories ? categories[0] : ""}</p>
         <h4 className={styles.title}>
           {title
-            ? title.length > 54
-              ? title.slice(0, 54) + "..."
+            ? title.length > 34
+              ? title.slice(0, 35) + "..."
               : title
             : ""}
         </h4>

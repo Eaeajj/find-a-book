@@ -1,7 +1,7 @@
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { useLocation, Link } from "react-router-dom";
 import styles from "./BookPage.module.css";
-import { fetchBook } from "../../store/ActionCreator";
+import { fetchBook } from "../../store/book/BookActionCreator";
 import { useEffect } from "react";
 import BookDescription from "./components/BookDescription";
 import BookPageSkeleton from "./components/BookPageSkeleton";
